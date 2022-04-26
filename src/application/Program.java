@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import model.dao.DaoFactory;
+import model.dao.DepartmentDao;
 import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
@@ -17,9 +18,11 @@ public class Program {
 
 				
 		SellerDao sellerDao = DaoFactory.createSellerDao();
+		DepartmentDao departmentDao = DaoFactory.createDapartmentDao();
 		
 		System.out.println("=== TEST 1: seller findByID ====");
-		Seller seller = sellerDao.findById(3);
+		Seller seller = sellerDao.findById(2);
+
 		
 		System.out.println(seller);
 		
@@ -45,7 +48,7 @@ public class Program {
 		System.out.println("Inserido! Novo Id = " + newSeller.getId());
 		
 		System.out.println("\n=== TEST 5: seller Update ====");
-		seller = sellerDao.findById(1);
+		seller = sellerDao.findById(2);
 		seller.setName("Martha Wayne");
 		sellerDao.update(seller);
 		System.out.println("Atualização completa!");
@@ -56,6 +59,17 @@ public class Program {
 		int id = sc.nextInt();
 		sellerDao.deleteById(id);
 		System.out.println("ID " + id + "Deletado com sucesso!");
+		
+		System.out.println("=== TEST 7: department Insert ====");
+		Department newDepartment = new Department(null, "PC");
+		departmentDao.insert(newDepartment);
+		System.out.println("Novo departamento adicionado com sucesso");
+		
+		System.out.println("=== TEST 8: department findByID ====");
+		Department department = departmentDao.findById(2);
+
+		
+		System.out.println(department);
 
 	}
 	
